@@ -12,7 +12,7 @@ error_reporting( E_ALL & ~E_NOTICE );
 // 获取输入参数
 $id = intval( $_REQUEST['id'] );
 $title = trim( $_REQUEST['title'] );
-$content = trim( $_REQUEST['content'] );
+$content = strip_tags( trim( $_REQUEST['content'] ));
 
 // 参数检查
 if( strlen( $id ) < 1 ) die("简历ID不能为空");

@@ -6,7 +6,7 @@ if( intval( $_SESSION['uid'] ) < 1 )
     die("请先<a href='user_login.php'>登入</a>再添加简历"); 
 }
 
-$id = intval( $_REQUEST );
+$id = intval( $_REQUEST['id'] );
 if( $id < 1 ) die("错误的简历ID");
 
 try

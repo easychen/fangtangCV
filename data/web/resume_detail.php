@@ -1,6 +1,6 @@
 <?php
 
-$id = intval( $_REQUEST );
+$id = intval( $_REQUEST['id'] );
 if( $id < 1 ) die("错误的简历ID");
 
 try

@@ -11,7 +11,7 @@ error_reporting( E_ALL & ~E_NOTICE );
 
 // 获取输入参数
 $title = trim( $_REQUEST['title'] );
-$content = trim( $_REQUEST['content'] );
+$content = strip_tags( trim( $_REQUEST['content'] ));
 
 // 参数检查
 if( strlen( $title ) < 1 ) die("简历名称不能为空");
