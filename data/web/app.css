@@ -1,0 +1,91 @@
+.menu-square
+{
+    display: inline-block;
+    background-color: #ccc;
+    width:14px;
+    height: 14px;
+    margin-right:5px;
+}
+
+.menu-square-large
+{
+    display: inline-block;
+    background-color: #ccc;
+    width:24px;
+    height: 24px;
+    margin-right:5px;
+}
+
+.container
+{
+    max-width:600px;
+}
+
+.resume-list
+{
+    padding:0px;
+    font-size: 16px!important;
+}
+
+
+.resume-list li
+{
+    margin:0px;
+    display: block;
+    /* list-style-image: url(image/portrait.png); */
+}
+
+.resume-list li .title
+{
+    display: inline-block;
+    border-bottom:2px solid #eee;
+    text-decoration: none;
+    color:rgb( 0 , 152 , 255 );
+    line-height: 30px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.resume-list li a:not(.title)
+{
+    padding-left:10px;
+    display: inline-block;
+}
+
+.resume-list li
+{
+    vertical-align: middle;
+}
+
+h1.page-title,.content h1
+{
+    color:#ccc;
+    font-weight: 400;
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.page-box
+{
+    padding:10px;
+}
+
+.no-padding
+{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.form_info:not(:empty)
+{
+    padding:10px;
+    font-size: 14px;
+    background-color: bisque;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.resume_add
+{
+    margin-top:20px;
+}
