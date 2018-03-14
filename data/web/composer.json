@@ -1,0 +1,28 @@
+{
+    "name": "fangtang/cv",
+    "description": "simple resume system",
+    "type": "project",
+    "require": {
+        "erusev/parsedown": "^1.7"
+    },
+    "authors": [
+        {
+            "name": "Easy",
+            "email": "Easychen@qq.com"
+        }
+    ],
+    "autoload":
+    {
+        "files":["framework/lib/function.php","framework/config/app.config.php"],
+        "psr-4":
+        {
+            "FangFrame\\Controller\\":"framework/controller/"
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

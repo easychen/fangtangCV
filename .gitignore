@@ -1,2 +1,4 @@
 data/mysql/*
+data/web/vendor/*
+data/web/composer.lock
 .DS_Store
