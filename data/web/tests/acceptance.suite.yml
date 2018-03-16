@@ -9,7 +9,6 @@ modules:
     enabled:
         - WebDriver:
             url: 'http://o.ftqq.com/'
-            window_size: false # disabled in ChromeDriver
             port: 9515
             browser: chrome
         - \Helper\Acceptance

@@ -13,4 +13,19 @@ class RoboFile extends \Robo\Tasks
     {
         $this->_exec('codecept run');
     }
+
+    /**
+     * 运行单元测试
+     */
+    public function unit()
+    {
+        $this->_exec('codecept run unit');
+    }
+
+    public function chrome()
+    {
+        $this->_exec('chromedriver --url-base=/wd/hub');
+    }
+
+
 }
