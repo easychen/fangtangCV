@@ -1,0 +1,33 @@
+.App
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width:600px;
+  /* background-color: bisque; */
+  min-height:100vh;
+}
+
+.header
+{
+  flex:1;
+  min-height: 80px;
+  /* background-color: brown; */
+}
+
+.main
+{
+  flex:20;
+  padding:20px;
+  /* background-color: cornflowerblue; */
+}
+
+h1.page-title, .content h1 
+{
+  color: #ccc;
+  font-weight: 400;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+

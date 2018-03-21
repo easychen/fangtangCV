@@ -1,0 +1,49 @@
+import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { observer , inject } from 'mobx-react';
+import { Redirect } from 'react-router-dom';
+
+@inject("store")
+@observer
+export default class Login extends Component 
+{
+
+    constructor(props)
+    {
+        super( props );
+        this.state = {"email":"thetwo@gmail.com","password":"phpphp"};
+    }
+
+    login()
+    {
+        console.log("in login function");
+        this.props.store.login( this.state.email , this.state.password );
+    }
+
+    handleChange( e , field )
+    {
+        //console.log("in change~ "+field+e.target.value );
+        let o = {};
+        o[field] = e.target.value;
+        this.setState( o );
+    }
+    
+    render()
+    {
+        return <div>
+            <h1 className="page-title">用户登入{this.props.store.token}</h1>
+            <Form>
+                <FormGroup>
+                <Input type="email" name="email"  placeholder="Email" value={this.state.email} onChange={(e)=>{this.handleChange(e,"email");}}/>
+                </FormGroup>
+                <FormGroup>
+                <Input type="password" name="password"  placeholder="密码（6~12个字符）" value={this.state.password} onChange={(e)=>{this.handleChange(e,"password");}}/>
+                </FormGroup>
+                <FormGroup>
+                <Button color="primary" onClick={()=>this.login()}>登入</Button>
+                </FormGroup>
+                { this.props.store.token != "" && <Redirect to="/myresume"/> }
+        </Form>
+        </div>;
+    }
+}

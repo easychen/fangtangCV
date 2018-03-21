@@ -5,10 +5,12 @@ class Resume
 {
     protected function check_login()
     {
-        if( $token = v('token') && strlen( $token ) > 0 )
+        //print_r( v('token') );
+        $token = v('token');
+        if( $token && ( strlen( $token ) > 0 ) )
         {
             session_id( $token  );
-            @session_start();
+            session_start();  
         }
         
         if( !is_login() )
@@ -71,12 +73,12 @@ class Resume
         {
             $resume = $resume_list[0];
             $resume['title'] = strip_tags( $resume['title'] );
-            $resume['content'] = ( new \Parsedown() )->text( $resume['content'] );
+            // $resume['content'] = ( new \Parsedown() )->text( $resume['content'] );
 
             $data['resume'] = $resume;
             $data['title'] = $resume['title'];
 
-            send_json( $data );
+            send_json( $data['resume'] );
             //return render_layout( $data , 'solo' );
         }
         else

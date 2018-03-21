@@ -2,3 +2,4 @@ data/mysql/*
 data/web/vendor/*
 data/web/composer.lock
 .DS_Store
+data/web/client/node_modules

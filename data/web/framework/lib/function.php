@@ -36,18 +36,28 @@ function e( $message )
 
 function send_json( $data )
 {
-    $ret['data'] = $data;
-    $ret['code'] = 0;
-    $ret['time'] = date("Y-m-d H:i:s");
-    echo json_encode( $ret , JSON_UNESCAPED_UNICODE );
+    return _send_data( 0 , $data );
 }
 
 function send_error( $error )
 {
-    $ret['error'] = $error;
-    $ret['code'] = 1;
+    return _send_data( 1 , $error );
+}
+
+function _send_data( $code , $info )
+{
+    if( $code == 0 ) $ret['data'] = $info;
+    else $ret['error'] = $info;
+
+    $ret['code'] = $code;
     $ret['time'] = date("Y-m-d H:i:s");
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
+    header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
+
     echo json_encode( $ret , JSON_UNESCAPED_UNICODE );
+
+    
 }
 
 /**
