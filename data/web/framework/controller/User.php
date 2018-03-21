@@ -19,7 +19,8 @@ class User
             unset( $_SESSION[$key] );
         }
 
-        header( "Location: /" );
+        // header( "Location: /" );
+        return send_json( ['msg'=>'done'] );
     }
 
     public function register()
@@ -52,7 +53,8 @@ class User
 
         $ret = run_sql( $sql , [ $email , password_hash( $password , PASSWORD_DEFAULT ) , date( "Y-m-d H:i:s" )  ] , 1062 , "Email地址已被注册" );
 
-        echo $info = "用户注册成功<script>location='/?m=user&a=login'</script>";
+        send_json( ['msg'=>'用户注册成功'] );
+        //echo $info = "用户注册成功<script>location='/?m=user&a=login'</script>";
         return $info;
         
     }
@@ -93,7 +95,11 @@ class User
         $_SESSION['email'] = $email;
         $_SESSION['uid'] = $user['id'];
 
-        echo "登入成功<script>location='/?m=resume&a=list'</script>";
+        $token = session_id();
+
+        send_json(['token'=>$token,'msg'=>'登入成功']);
+        //echo "登入成功<script>location='/?m=resume&a=list'</script>";
+        
         return true;
         
 

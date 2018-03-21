@@ -1,0 +1,7 @@
+actor: ApiTester
+modules:
+    enabled:
+        - REST:
+            url: http://o.ftqq.com/
+            depends: PhpBrowser
+            part: Json

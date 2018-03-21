@@ -25,7 +25,8 @@ try
 }
 catch(\Exception $e )
 {
-    die( $e->getMessage() );
+    send_error( $e->getMessage() );
+    //die( $e->getMessage() );
 }
 
 

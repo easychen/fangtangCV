@@ -34,6 +34,22 @@ function e( $message )
     throw new Exception( $message );
 }
 
+function send_json( $data )
+{
+    $ret['data'] = $data;
+    $ret['code'] = 0;
+    $ret['time'] = date("Y-m-d H:i:s");
+    echo json_encode( $ret , JSON_UNESCAPED_UNICODE );
+}
+
+function send_error( $error )
+{
+    $ret['error'] = $error;
+    $ret['code'] = 1;
+    $ret['time'] = date("Y-m-d H:i:s");
+    echo json_encode( $ret , JSON_UNESCAPED_UNICODE );
+}
+
 /**
  * 支持多个参数
  */
@@ -117,6 +133,12 @@ function get_data( $sql , $data = null , $error_number = null , $notice = null )
 function run_sql( $sql , $data = null , $error_number = null , $notice = null )
 {
     return _db_run( $sql , $data , $error_number , $notice , false );
+}
+
+function last_id()
+{
+    $pdo = pdo();
+    return $pdo->lastInsertId();
 }
 
 function _db_run( $sql , $data = null , $error_number = null , $notice = null , $return  = true )

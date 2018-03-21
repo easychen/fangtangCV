@@ -5,9 +5,15 @@ class Resume
 {
     protected function check_login()
     {
+        if( $token = v('token') && strlen( $token ) > 0 )
+        {
+            session_id( $token  );
+            @session_start();
+        }
+        
         if( !is_login() )
         {
-            header("Location: /m=user&a=login");
+            // header("Location: /m=user&a=login");
             e("请先<a href='/m=user&amp;a=login'>登入</a>再添加简历");
             exit;
         }
@@ -20,7 +26,8 @@ class Resume
          
         $data['resume_list'] = get_data( "SELECT `id`,`uid`,`title`,`created_at` FROM `resume` WHERE `uid` = ? AND `is_deleted` != 1" , [ intval( $_SESSION['uid'] ) ] );
         $data['title'] = "我的简历";
-        render_layout( $data );
+        // render_layout( $data );
+        return send_json( $data['resume_list'] );
     }
 
     public function add()
@@ -46,7 +53,8 @@ class Resume
 
         run_sql( $sql , [ $title , $content , intval( $_SESSION['uid'] ) , date( "Y-m-d H:i:s" )  ] , 1062 , "简历名已存在" );
 
-        echo "简历保存成功<script>location='/?m=resume&a=list'</script>";
+        //echo "简历保存成功<script>location='/?m=resume&a=list'</script>";
+        send_json(['msg'=>'简历保存成功','rid'=>last_id()]);
 
         return true;
 
@@ -57,7 +65,7 @@ class Resume
         $id = intval( v('id') );
         if( $id < 1 ) e("错误的简历ID");
 
-        $resume_list = get_data( "SELECT * FROM `resume` WHERE `id` = ? LIMIT 1" , [ $id ] );
+        $resume_list = get_data( "SELECT * FROM `resume` WHERE `id` = ? AND `is_deleted` = 0 LIMIT 1" , [ $id ] );
 
         if( $resume_list )
         {
@@ -68,7 +76,12 @@ class Resume
             $data['resume'] = $resume;
             $data['title'] = $resume['title'];
 
-            return render_layout( $data , 'solo' );
+            send_json( $data );
+            //return render_layout( $data , 'solo' );
+        }
+        else
+        {
+            e("简历不存在或已被删除");
         }
 
         return false;
@@ -123,18 +136,21 @@ class Resume
 
         run_sql( "UPDATE `resume` SET `title` = ? , `content` = ? WHERE `id` = ? AND `uid` =  ? LIMIT 1" , [ $title , $content , $id , intval( $_SESSION['uid'] ) ] , 1062 , "简历名称已存在" );
 
-        echo "简历更新成功<script>location='/?m=resume&a=list'</script>";
+        return send_json(['msg'=>'简历更新成功']);
+        //echo "简历更新成功<script>location='/?m=resume&a=list'</script>";
         return true;
     }
 
     public function remove()
     {
+        $this->check_login();
+
         $id = intval( v('id') );
         if( $id < 1 ) e("错误的简历ID");
 
         run_sql( "UPDATE `resume` SET `is_deleted` = 1 , `title` = CONCAT( `title` , ? ) WHERE `id` = ? AND `uid` =  ? LIMIT 1" , [ '_DEL_'.time() , $id , intval( $_SESSION['uid'] ) ] );
 
-        echo "done";
+        send_json( ['msg'=>'done'] );
         return true;
     }
 
