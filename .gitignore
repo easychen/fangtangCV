@@ -3,3 +3,4 @@ data/web/vendor/*
 data/web/composer.lock
 .DS_Store
 data/web/client/node_modules
+data/web/client/build/*
