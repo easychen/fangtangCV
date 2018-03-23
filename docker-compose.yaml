@@ -24,11 +24,11 @@ services:
       expose:
         - "6379"
       restart: always
-  livereload:
-    image: hub.c.163.com/easychen/livereload
-    ports:
-      - "35729:35729"
-    volumes:
-      - "./data:/usr/src/livereload-watch"       
+  # livereload:
+  #   image: hub.c.163.com/easychen/livereload
+  #   ports:
+  #     - "35729:35729"
+  #   volumes:
+  #     - "./data:/usr/src/livereload-watch"       
 
     

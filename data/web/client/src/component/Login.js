@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 import { observer , inject } from 'mobx-react';
 import { Redirect } from 'react-router-dom';
 
@@ -11,13 +11,16 @@ export default class Login extends Component
     constructor(props)
     {
         super( props );
-        this.state = {"email":"thetwo@gmail.com","password":"phpphp"};
+        this.state = {"email":"","password":"","redir":false};
     }
 
-    login()
+    async login()
     {
-        console.log("in login function");
-        this.props.store.login( this.state.email , this.state.password );
+        const data = await this.props.store.login( this.state.email , this.state.password );
+        if( parseInt( data.code , 10 ) === 0  )
+            this.setState({"redir":true});
+        else
+            alert( data.error ); 
     }
 
     handleChange( e , field )
@@ -42,7 +45,7 @@ export default class Login extends Component
                 <FormGroup>
                 <Button color="primary" onClick={()=>this.login()}>登入</Button>
                 </FormGroup>
-                { this.props.store.token != "" && <Redirect to="/myresume"/> }
+                {  this.state.redir && <Redirect to="/myresume"/> }
         </Form>
         </div>;
     }

@@ -51,10 +51,12 @@ function _send_data( $code , $info )
 
     $ret['code'] = $code;
     $ret['time'] = date("Y-m-d H:i:s");
+
+
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
     header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
-
+    header('Content-type:application/json');
     echo json_encode( $ret , JSON_UNESCAPED_UNICODE );
 
     

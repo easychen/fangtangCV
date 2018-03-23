@@ -93,11 +93,19 @@ class Resume
 
     public function index()
     {
-        if( $resume_list = get_data( "SELECT `id`,`uid`,`title`,`created_at` FROM `resume` WHERE  `is_deleted` != 1" , [ intval( $_SESSION['uid'] ) ] ))
+        if( $resume_list = get_data( "SELECT `id`,`uid`,`title`,`created_at` FROM `resume` WHERE  `is_deleted` != 1 ORDER BY `id` DESC LIMIT 100" ))
         {
             $data['title'] = '方糖简历';
             $data['resume_list'] = $resume_list;
             return render_layout( $data );
+        }
+    }
+
+    public function all_list()
+    {
+        if( $resume_list = get_data( "SELECT `id`,`uid`,`title`,`created_at` FROM `resume` WHERE  `is_deleted` != 1 ORDER BY `id` DESC LIMIT 100" ))
+        {
+            return send_json( $resume_list );
         }
     }
 

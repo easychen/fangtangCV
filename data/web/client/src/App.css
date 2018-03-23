@@ -31,3 +31,18 @@ h1.page-title, .content h1
   margin-bottom: 20px;
 }
 
+.textBox
+{
+  min-height:100px;
+}
+
+.actionBox
+{
+  margin-top:30px;
+}
+
+.actionIcon
+{
+  margin-left:10px;
+}
+

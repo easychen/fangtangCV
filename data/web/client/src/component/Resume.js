@@ -9,23 +9,31 @@ import ReactMarkdown from 'react-markdown';
 export default class Resume extends Component 
 {
 
+    constructor( props )
+    {
+        super( props );
+        this.state = {"content":""};
+    }
+
     async componentDidMount()
     {
         // console.log(  );
         // this.props.match.params.id
 
-        const ret = await this.props.store.get_resume( this.props.match.params.id );
+        const data = await this.props.store.get_resume( this.props.match.params.id );
 
-        console.log( ret );
+        if( parseInt( data.code , 10 ) === 0  )
+            this.setState( {"content":data.data.content} );
+        else
+            alert( data.error );   
+        
+        console.log( data );
     }
     
     render()
     {
-        const title = this.props.store.current_resume_title;
-        const content = this.props.store.current_resume_content;
-        const id = this.props.store.current_resume_id;
         return <div>
-            <ReactMarkdown source={content} />
+            <ReactMarkdown source={this.state.content} />
         </div>;
     }
 }
