@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import axios from 'axios';
+const base = 'http://eos.ftqq.com';
 
 class AppState
 {
@@ -22,7 +23,7 @@ class AppState
     {
         var params = new URLSearchParams();
         params.append("id" , id);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=resume&a=detail' , params );
+        const { data } = await axios.post( base+'/?m=resume&a=detail' , params );
 
         if( parseInt( data.code , 10 ) === 0  )
         {
@@ -39,7 +40,7 @@ class AppState
         params.append("title" , title);
         params.append("content" , content);
         params.append("token" , this.token);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=resume&a=save' , params );
+        const { data } = await axios.post( base+'/?m=resume&a=save' , params );
 
         return data ;
     }
@@ -48,7 +49,7 @@ class AppState
     {
         var params = new URLSearchParams();
         params.append("token" , this.token);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=user&a=logout' , params );
+        const { data } = await axios.post( base+'/?m=user&a=logout' , params );
 
         return data ;
     }
@@ -58,7 +59,7 @@ class AppState
         var params = new URLSearchParams();
         params.append("id" , id);
         params.append("token" , this.token);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=resume&a=remove' , params );
+        const { data } = await axios.post( base+'/?m=resume&a=remove' , params );
 
         return data ;
     }
@@ -70,7 +71,7 @@ class AppState
         params.append("content" , content);
         params.append("id" , id);
         params.append("token" , this.token);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=resume&a=update' , params );
+        const { data } = await axios.post( base+'/?m=resume&a=update' , params );
 
         return data ;
     }
@@ -81,7 +82,7 @@ class AppState
         params.append("email" , email);
         params.append("password" , password);
         params.append("password2" , password);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=user&a=save' , params );
+        const { data } = await axios.post( base+'/?m=user&a=save' , params );
 
         return data ;
       
@@ -93,7 +94,7 @@ class AppState
         var params = new URLSearchParams();
         params.append("email" , email);
         params.append("password" , password);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=user&a=login_check' , params );
+        const { data } = await axios.post( base+'/?m=user&a=login_check' , params );
 
         // console.log( data );
         
@@ -111,7 +112,7 @@ class AppState
     {
         var params = new URLSearchParams();
         params.append("token" , this.token);
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=resume&a=list' , params );
+        const { data } = await axios.post( base+'/?m=resume&a=list' , params );
 
         // console.log( data );
         
@@ -127,7 +128,7 @@ class AppState
     @action async get_all_resume()
     {
         var params = new URLSearchParams();
-        const { data } = await axios.post( 'http://o.ftqq.com/?m=resume&a=all_list' , params );
+        const { data } = await axios.post( base+'/?m=resume&a=all_list' , params );
 
         // console.log( data );
         

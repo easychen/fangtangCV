@@ -23,7 +23,7 @@ export default class Index extends Component
                     return <ListGroupItem  action key={item.id}>
                     <Button tag="a" href={"/resume/"+item.id} color="light" target="_blank">{item.title}</Button> 
 
-                        <Link to={"/resume/"+item.id}  target="_blank"><img src="/open_in_new.png" alt="查看" className="actionIcon"/></Link>
+                        <Link to={"/resume/"+item.id}  target="_blank"><img src="open_in_new.png" alt="查看" className="actionIcon"/></Link>
 
                     </ListGroupItem>;
                 } )}
