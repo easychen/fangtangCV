@@ -4,7 +4,7 @@ import { observer , inject } from 'mobx-react';
 
 @inject("store")
 @observer
-export default class Login extends Component 
+export default class Logout extends Component 
 {
 
     constructor(props)
